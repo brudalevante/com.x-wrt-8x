@@ -1,83 +1,14 @@
-## IntroducciÛn a fakemesh
+English translation:
 
-fakemesh es una estructura de topologÌa de red compuesta por un controlador (AC), uno o m·s AP cableados (Wired AP) y satÈlites (Agent). Es una red hÌbrida que combina los modos de red Wireless Mesh y AC+AP. En esta configuraciÛn, los AP cableados se conectan al controlador (AC) mediante cables, mientras que los satÈlites (Agent) se conectan de forma inal·mbrica utilizando el modo STA, formando asÌ una red de cobertura inal·mbrica (que tambiÈn incluye cableada).
-
-El despliegue de fakemesh es relativamente sencillo: solo necesitas conectar los dispositivos nodos a la red correcta y configurar el rol, Mesh ID y otra informaciÛn relevante en cada nodo. Gracias a que fakemesh combina las redes Wireless Mesh y AC+AP, tambiÈn es f·cil implementar redes hÌbridas que mejoren la cobertura y la confiabilidad de la red.
-
-Actualmente, X-WRT integra fakemesh de manera predeterminada.
-
-## Uso de fakemesh
-
-Formatos de direcciÛn para acceder a los dispositivos despuÈs de configurar la red:
-DirecciÛn para acceder al controlador: http://controller.fakemesh/ o http://ac.fakemesh/
-
-DirecciÛn para acceder a los AP: http://{mac}.ap.fakemesh/ o http://N.ap.fakemesh/
-
-Donde {mac} corresponde a la direcciÛn MAC del AP, por ejemplo: {mac}=1122334455AB. Y N es el n˙mero asignado autom·ticamente al AP, por ejemplo: N=1, N=2, N=3, ...
-
-Ejemplos:
-
-Code
-http://1.ap.fakemesh/
-http://1122334455AB.ap.fakemesh/
-SoluciÛn de problemas:
-Si un AP permanece desconectado durante aproximadamente 3 minutos, entrar· en modo de fallo. En este modo, se habilitar· un SSID predeterminado que permite acceder para reconfigurar el dispositivo.
-
-El SSID y contraseÒa predeterminados en modo de fallo son:
-
-Code
-SSID: X-WRT_XXXX
-PASSWD: 88888888
-En este modo, la direcciÛn IP de gestiÛn del AP ser· la direcciÛn de la puerta de enlace DHCP. Por ejemplo, si un ordenador obtiene una IP 192.168.16.x, la IP de gestiÛn del AP ser· 192.168.16.1.
-
-## Componentes b·sicos de fakemesh
-
-La red incluye un controlador (controller) y uno o m·s AP.
-
-Los AP se dividen en: satÈlites (Agent) y AP cableados (Wired AP).
-
-Controlador (Controller): Act˙a como el AC y router de salida, proporcionando acceso a Internet, gestionando los satÈlites y AP cableados, y unificando la gestiÛn inal·mbrica.
-SatÈlites (Agent): AP conectados mediante Wi-Fi.
-AP cableados (Wired AP): AP conectados mediante cables.
-## Par·metros de configuraciÛn de fakemesh
-
-Mesh ID: Este par·metro es el identificador com˙n de la red fakemesh. El controlador, los satÈlites y los AP cableados deben configurarse con el mismo Mesh ID.
-
-Clave (Key): Es la clave de encriptaciÛn com˙n utilizada en la red. Si no se requiere encriptaciÛn, se puede dejar en blanco.
-
-Banda (Band): Es la banda inal·mbrica utilizada para la red, y debe ser la misma (5G o 2G) en todos los dispositivos.
-
-Rol (Role): Puede ser Controlador, SatÈlite o AP cableado.
-
-ConfiguraciÛn sincronizada (Sync Config): Permite centralizar la configuraciÛn Wi-Fi a travÈs del controlador.
-
-DirecciÛn IP de acceso (Access IP address): Configura una IP especÌfica para acceder a la interfaz de gestiÛn del controlador.
-
-Deshabilitar retransmisiÛn (Fronthaul Disabled): Desactiva la retransmisiÛn de seÒales inal·mbricas desde este nodo, evitando que otros AP se conecten a travÈs de Èl.
-
-Ayudante de itinerancia (Band Steer Helper): Actualmente, se puede elegir entre DAWN o usteer como asistente de itinerancia.
-
-## GestiÛn inal·mbrica (Wireless Management)
-
-A travÈs de la interfaz del controlador, se pueden gestionar centralizadamente las redes inal·mbricas, como agregar/quitar SSIDs, configurar encriptaciÛn y ajustar el ancho de banda.
-
-## Despliegue en modo alternativo del controlador
-
-Cuando el controlador no act˙a como puerta de enlace ni proporciona servicios DHCP, los usuarios deben configurar manualmente la red, incluyendo la IP de la interfaz LAN, la IP de la puerta de enlace y el DNS. Generalmente, la interfaz LAN del controlador est· configurada por defecto como cliente DHCP para obtener una IP desde una pasarela de terceros. Si se requiere IP est·tica, debes asegurarte de que el controlador y la pasarela est·n en la misma subred y que pueden comunicarse. De lo contrario, la configuraciÛn sincronizada entre el controlador y los AP no funcionar·.
-
-TraducciÛn al inglÈs:
-## Fakemesh Introduction
-
+Fakemesh Introduction
 fakemesh is a network topology structure composed of a controller (AC), one or more wired APs (Wired AP), and satellites (Agent). It is a hybrid network combining Wireless Mesh and AC+AP networking modes. In this setup, the wired APs connect to the controller (AC) via cables, while the satellites (Agent) connect wirelessly using the STA method, forming a wireless (including wired) coverage network.
 
 Deploying fakemesh is relatively convenient. You only need to connect the node devices to the correct network and configure the roles, Mesh ID, and other necessary information. Since fakemesh combines Wireless Mesh and AC+AP modes, it is also easy to implement hybrid networks, increasing both coverage and reliability.
 
 Currently, X-WRT has fakemesh functionality integrated by default.
 
-## Using fakemesh
-
-Device access addresses after successful network configuration:
-Access the controller: http://controller.fakemesh/ or http://ac.fakemesh/
+Using fakemesh
+Device access addresses after successful network configuration: Access the controller: http://controller.fakemesh/ or http://ac.fakemesh/
 
 Access the APs: http://{mac}.ap.fakemesh/ or http://N.ap.fakemesh/
 
@@ -85,30 +16,20 @@ Where {mac} is the MAC address of the AP, for example: {mac}=1122334455AB. N is 
 
 Examples:
 
-Code
-http://1.ap.fakemesh/
-http://1122334455AB.ap.fakemesh/
-Troubleshooting:
-If an AP is offline for about 3 minutes, it will enter failure mode. In this mode, a default SSID is enabled to allow management access for reconfiguration.
+Code http://1.ap.fakemesh/ http://1122334455AB.ap.fakemesh/ Troubleshooting: If an AP is offline for about 3 minutes, it will enter failure mode. In this mode, a default SSID is enabled to allow management access for reconfiguration.
 
 The default SSID and password in failure mode are:
 
-Code
-SSID: X-WRT_XXXX
-PASSWD: 88888888
-In failure mode, the APís management IP address is the gateway address provided by DHCP. For example, if your computer obtains an IP like 192.168.16.x, then the APís management IP will be 192.168.16.1.
+Code SSID: X-WRT_XXXX PASSWD: 88888888 In failure mode, the AP‚Äôs management IP address is the gateway address provided by DHCP. For example, if your computer obtains an IP like 192.168.16.x, then the AP‚Äôs management IP will be 192.168.16.1.
 
-## Fakemesh Basic Components
-
+Fakemesh Basic Components
 The network includes a controller (controller) and one or more APs.
 
 APs include: satellites (Agent) and wired APs (Wired AP).
 
-Controller: Acts as the AC and outbound router, providing internet access, managing satellite and wired APs, and centralizing wireless management.
-Satellites: APs connected via Wi-Fi.
-Wired APs: APs connected via cable.
-## Fakemesh Configuration Parameters
+Controller: Acts as the AC and outbound router, providing internet access, managing satellite and wired APs, and centralizing wireless management. Satellites: APs connected via Wi-Fi. Wired APs: APs connected via cable.
 
+Fakemesh Configuration Parameters
 Mesh ID: This parameter is the common ID for a fakemesh network. The controller, satellites, and wired APs must share the same Mesh ID.
 
 Key: This is the common encryption key for the network. If encryption is not required, this can be left blank.
@@ -119,16 +40,68 @@ Role: Can be Controller, Satellite, or Wired AP.
 
 Sync Configuration: Determines whether the controller will centrally manage Wi-Fi settings for the entire network.
 
-Access IP Address: Assigns a specific IP address to access the controllerís management interface.
+Access IP Address: Assigns a specific IP address to access the controller‚Äôs management interface.
 
 Fronthaul Disabled: Disables wireless signal retransmission, preventing other APs from connecting through this node.
 
 Band Steer Helper: You can choose DAWN or usteer for roaming assistance.
 
-## Wireless Management
-
+Wireless Management
 From the controller interface, you can centrally manage wireless settings, including adding/removing SSIDs, setting SSID encryption, and adjusting bandwidth.
 
-## Controller Bypass Deployment
-
+Controller Bypass Deployment
 If the controller does not act as a gateway nor provides DHCP service, the user must configure the network settings manually, including the LAN interface IP, gateway IP, and DNS. Additionally, the controller's LAN interface usually defaults to DHCP client mode to obtain an IP from a third-party gateway. If a static IP is required, ensure the controller and the third-party gateway exist within the same subnet and can communicate with each other. Otherwise, synchronization between the controller and other APs will fail.
+
+traducion al espa√±ol
+
+Introducci√≥n a fakemesh
+fakemesh es una estructura de topolog√≠a de red compuesta por un controlador (AC), uno o m√°s AP cableados (Wired AP) y sat√©lites (Agent). Es una red h√≠brida que combina los modos de red Wireless Mesh y AC+AP. En esta configuraci√≥n, los AP cableados se conectan al controlador (AC) mediante cables, mientras que los sat√©lites (Agent) se conectan de forma inal√°mbrica utilizando el modo STA, formando as√≠ una red de cobertura inal√°mbrica (que tambi√©n incluye cableada).
+
+El despliegue de fakemesh es relativamente sencillo: solo necesitas conectar los dispositivos nodos a la red correcta y configurar el rol, Mesh ID y otra informaci√≥n relevante en cada nodo. Gracias a que fakemesh combina las redes Wireless Mesh y AC+AP, tambi√©n es f√°cil implementar redes h√≠bridas que mejoren la cobertura y la confiabilidad de la red.
+
+Actualmente, X-WRT integra fakemesh de manera predeterminada.
+
+Uso de fakemesh
+Formatos de direcci√≥n para acceder a los dispositivos despu√©s de configurar la red: Direcci√≥n para acceder al controlador: http://controller.fakemesh/ o http://ac.fakemesh/
+
+Direcci√≥n para acceder a los AP: http://{mac}.ap.fakemesh/ o http://N.ap.fakemesh/
+
+Donde {mac} corresponde a la direcci√≥n MAC del AP, por ejemplo: {mac}=1122334455AB. Y N es el n√∫mero asignado autom√°ticamente al AP, por ejemplo: N=1, N=2, N=3, ...
+
+Ejemplos:
+
+Code http://1.ap.fakemesh/ http://1122334455AB.ap.fakemesh/ Soluci√≥n de problemas: Si un AP permanece desconectado durante aproximadamente 3 minutos, entrar√° en modo de fallo. En este modo, se habilitar√° un SSID predeterminado que permite acceder para reconfigurar el dispositivo.
+
+El SSID y contrase√±a predeterminados en modo de fallo son:
+
+Code SSID: X-WRT_XXXX PASSWD: 88888888 En este modo, la direcci√≥n IP de gesti√≥n del AP ser√° la direcci√≥n de la puerta de enlace DHCP. Por ejemplo, si un ordenador obtiene una IP 192.168.16.x, la IP de gesti√≥n del AP ser√° 192.168.16.1.
+
+Componentes b√°sicos de fakemesh
+La red incluye un controlador (controller) y uno o m√°s AP.
+
+Los AP se dividen en: sat√©lites (Agent) y AP cableados (Wired AP).
+
+Controlador (Controller): Act√∫a como el AC y router de salida, proporcionando acceso a Internet, gestionando los sat√©lites y AP cableados, y unificando la gesti√≥n inal√°mbrica. Sat√©lites (Agent): AP conectados mediante Wi-Fi. AP cableados (Wired AP): AP conectados mediante cables.
+
+Par√°metros de configuraci√≥n de fakemesh
+Mesh ID: Este par√°metro es el identificador com√∫n de la red fakemesh. El controlador, los sat√©lites y los AP cableados deben configurarse con el mismo Mesh ID.
+
+Clave (Key): Es la clave de encriptaci√≥n com√∫n utilizada en la red. Si no se requiere encriptaci√≥n, se puede dejar en blanco.
+
+Banda (Band): Es la banda inal√°mbrica utilizada para la red, y debe ser la misma (5G o 2G) en todos los dispositivos.
+
+Rol (Role): Puede ser Controlador, Sat√©lite o AP cableado.
+
+Configuraci√≥n sincronizada (Sync Config): Permite centralizar la configuraci√≥n Wi-Fi a trav√©s del controlador.
+
+Direcci√≥n IP de acceso (Access IP address): Configura una IP espec√≠fica para acceder a la interfaz de gesti√≥n del controlador.
+
+Deshabilitar retransmisi√≥n (Fronthaul Disabled): Desactiva la retransmisi√≥n de se√±ales inal√°mbricas desde este nodo, evitando que otros AP se conecten a trav√©s de √©l.
+
+Ayudante de itinerancia (Band Steer Helper): Actualmente, se puede elegir entre DAWN o usteer como asistente de itinerancia.
+
+Gesti√≥n inal√°mbrica (Wireless Management)
+A trav√©s de la interfaz del controlador, se pueden gestionar centralizadamente las redes inal√°mbricas, como agregar/quitar SSIDs, configurar encriptaci√≥n y ajustar el ancho de banda.
+
+Despliegue en modo alternativo del controlador
+Cuando el controlador no act√∫a como puerta de enlace ni proporciona servicios DHCP, los usuarios deben configurar manualmente la red, incluyendo la IP de la interfaz LAN, la IP de la puerta de enlace y el DNS. Generalmente, la interfaz LAN del controlador est√° configurada por defecto como cliente DHCP para obtener una IP desde una pasarela de terceros. Si se requiere IP est√°tica, debes asegurarte de que el controlador y la pasarela est√°n en la misma subred y que pueden comunicarse. De lo contrario, la configuraci√≥n sincronizada entre el controlador y los AP no funcionar√°.
